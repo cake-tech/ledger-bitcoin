@@ -1,0 +1,23 @@
+name: ledger_bitcoin
+description: A Ledger App Plugin for Bitcoin
+version: 0.0.1
+# repository: https://github.com/my_org/my_repo
+
+environment:
+  sdk: ^3.0.6
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  convert: ^3.1.1
+  crypto: ^3.0.3
+  dart_varuint_bitcoin: ^1.0.3
+  ledger_flutter: ^1.0.1
+  pointycastle: ^3.7.4
+
+dev_dependencies:
+  lints: ^2.0.0
+  test: ^1.21.0
+  http: any
+
