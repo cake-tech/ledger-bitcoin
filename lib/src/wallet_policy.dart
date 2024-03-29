@@ -1,11 +1,9 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
-import 'package:dart_varuint_bitcoin/dart_varuint_bitcoin.dart' as varuint;
 import 'package:ledger_bitcoin/src/utils/buffer_writer.dart';
 import 'package:ledger_bitcoin/src/utils/merkle/merkle.dart';
 import 'package:ledger_bitcoin/src/utils/utils.dart';
-import 'package:ledger_flutter/src/utils/buffer.dart';
 
 class WalletPolicy {
   final String name;
