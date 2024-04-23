@@ -1,6 +1,5 @@
 import 'dart:typed_data';
 
-import 'package:ledger_bitcoin/src/utils/uint8list_extension.dart';
 import 'package:ledger_flutter/src/ledger/ledger_operation.dart';
 import 'package:ledger_flutter/src/utils/buffer.dart';
 
@@ -28,7 +27,6 @@ abstract class LedgerInputOperation<T> extends LedgerOperation<T> {
       ..writeUint8(inputData.length)
       ..write(inputData);
 
-    print("apdus: ${writer.toBytes().toHexString()}");
     return [writer.toBytes()];
   }
 }

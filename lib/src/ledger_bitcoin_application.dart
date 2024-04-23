@@ -211,12 +211,6 @@ class BitcoinLedgerApp extends LedgerApp {
       merkelizedPsbt.outputMapCommitments.map((m) => hashLeaf(m)),
     ).root;
 
-    print("------------------------------------------------------------");
-    print("clientInterpreter.preimages(${clientInterpreter.preimages.length})");
-    clientInterpreter.preimages
-        .forEach((key, value) => print("$key: ${value.toHexString()}"));
-    print("------------------------------------------------------------");
-
     await ledger.runFlow(
       device,
       BitcoinSignPsbtOperation(
@@ -252,8 +246,6 @@ class BitcoinLedgerApp extends LedgerApp {
         psbt.setInputPartialSig(k, pubkey, v);
       }
     });
-
-    print(sigs);
 
     psbt.finalize();
     return psbt.extract();

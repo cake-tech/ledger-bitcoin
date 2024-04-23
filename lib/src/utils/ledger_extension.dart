@@ -11,7 +11,6 @@ extension RunLedgerFlow on Ledger {
     var response = await sendOperation<Uint8List>(device, operation);
 
     while (response.sublist(response.length - 2).toHexString() == "e000") {
-      print("response: ${response.toHexString()}");
       final hwRequest =
           response.sublist(0, response.length - 2); // -2 because we need to remove the status bytes
       final commandResponse = cci.execute(hwRequest);
@@ -21,8 +20,6 @@ extension RunLedgerFlow on Ledger {
 
     if (response.toHexString() == "6a80") throw LedgerException(message: "SW_INCORRECT_DATA");
     if (response.toHexString() == "6a82") throw LedgerException(message: "SW_NOT_SUPPORTED");
-
-    print("Final response: ${response.toHexString()}");
 
     return response.sublist(
         0, response.length - 2); // -2 because we need to remove the status bytes

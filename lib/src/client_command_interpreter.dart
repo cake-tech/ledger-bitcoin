@@ -67,7 +67,6 @@ class ClientCommandInterpreter {
 
     final cmdCode = ClientCommandCode.fromInt(request[0]);
     final cmd = _commands[cmdCode];
-    print("cmdCode: $cmdCode");
     if (cmd == null) throw Exception('Unexpected command code $cmdCode');
 
     return cmd.execute(request);
