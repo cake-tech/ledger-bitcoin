@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:convert/convert.dart';
 import 'package:dart_varuint_bitcoin/dart_varuint_bitcoin.dart' as varuint;
 
 extension ToVarint on int {
@@ -33,3 +34,8 @@ extension ToVarint on int {
 
 /// Convert a bitcoin-style varint buffer into a integer
 int intFromVarint(Uint8List value) => varuint.decode(value).output;
+
+/// Convert a bigint into a little endian unsigned 64 bit Uint8List
+Uint8List bigIntToUint64LE(BigInt bigInt) => Uint8List.fromList(hex.decode(hex
+    .encode(hex.decode(bigInt.toRadixString(16)).reversed.toList())
+    .padRight(16, "0")));

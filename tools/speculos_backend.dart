@@ -35,7 +35,7 @@ class SpeculosBitcoinLedgerApp {
 
   SpeculosBitcoinLedgerApp({
     this.transformer = const BitcoinTransformer(),
-    this.derivationPath = "m/84'/1'/0'/0/0",
+    this.derivationPath = "m/84'/0'/0'/0/0",
   });
 
   Future<List<String>> getAccounts({String? accountsDerivationPath}) async {
@@ -224,8 +224,6 @@ class SpeculosBitcoinLedgerApp {
       }
     });
 
-    print(hex.encode(psbt.serialize()));
-
     psbt.finalize();
     return psbt.extract();
   }
@@ -271,6 +269,7 @@ Future<Uint8List> runFlow(LedgerOperation<Uint8List> operation,
   }
 
   if (response.toHexString() == "6a80") throw Exception("SW_INCORRECT_DATA");
+  if (response.toHexString() == "6a82") throw Exception("SW_NOT_SUPPORTED");
 
   print("Final response: ${response.toHexString()}");
 
