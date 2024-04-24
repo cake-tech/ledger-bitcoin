@@ -45,6 +45,7 @@ void main() {
 
     test("bigIntToUint64LE", () {
       expect(bigIntToUint64LE(BigInt.from(100)), Uint8List.fromList([100, 0, 0, 0, 0, 0, 0, 0]));
+      expect(bigIntToUint64LE(BigInt.from(10000000)), Uint8List.fromList([128, 150, 152, 0, 0, 0, 0, 0]));
     });
   });
 }
