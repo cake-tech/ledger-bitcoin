@@ -1,39 +1,61 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+<br />
+<div align="center">
+  <a href="https://www.ledger.com/">
+    <img src="https://bitcoin.org/img/icons/logotop.svg" width="600"/>
+  </a>
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
+<h1 align="center">ledger-bitcoin</h1>
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
+<p align="center">
+    A Flutter Ledger App Plugin for the Bitcoin blockchain
+    <br />
+    <a href="https://pub.dev/documentation/ledger_algorand/latest/"><strong>« Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/cake-tech/ledger_bitcoin/issues">Report Bug</a>
+    · <a href="https://github.com/cake-tech/ledger_citcoin/issues">Request Feature</a>
+    · <a href="https://pub.dev/packages/ledger_flutter">Ledger Flutter</a>
+  </p>
+</div>
+<br/>
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+---
 
-## Features
+## Overview
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+Ledger Nano devices are the perfect hardware wallets for managing your crypto & NFTs on the go.
+This Flutter package is a plugin for the [ledger_flutter](https://pub.dev/packages/ledger_flutter) package to get accounts and sign transactions using the Bitcoin blockchain.
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+### Installation
+
+Install the latest version of this package via pub.dev:
+
+```yaml
+ledger_bitcoin: ^latest-version
+```
+
+For integration with the Ledger Flutter package, check out the documentation [here](https://pub.dev/packages/ledger_flutter).
+
+### Setup
+
+Create a new instance of an `BitcoinLedgerApp` and pass an instance of your `Ledger` object.
+
+```dart
+final app = BitcoinLedgerApp(ledger);
+```
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
+### Get Wallet Address
+
+Depending on the required blockchain and Ledger Application Plugin, the `getAccounts()` method can be used to fetch the main address from the Ledger Nano device.
 
 ```dart
-const like = 'sample';
+final accounts = await app.getAccounts(device);
 ```
 
-## Additional information
+## License
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+The ledger_bitcoin SDK is released under the MIT License (MIT). See LICENSE for details.

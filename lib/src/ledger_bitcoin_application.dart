@@ -76,20 +76,26 @@ class BitcoinLedgerApp extends LedgerApp {
   @override
   Future<Uint8List> signTransaction(
       LedgerDevice device, Uint8List transaction) {
-    // TODO: implement signTransaction
-    throw UnimplementedError();
+    final psbt = PsbtV2();
+    psbt.deserialize(transaction);
+    return signPsbt(device, psbt: psbt);
   }
 
   @override
   Future<List<Uint8List>> signTransactions(
-      LedgerDevice device, List<Uint8List> transactions) {
-    // TODO: implement signTransactions
-    throw UnimplementedError();
+      LedgerDevice device, List<Uint8List> transactions) async {
+    final sigs = <Uint8List>[];
+
+    for (final transaction in transactions) {
+      sigs.add(await signTransaction(device, transaction));
+    }
+
+    return sigs;
   }
 
   // Base 64 Encoded v, r, s
   Future<Uint8List> signMessage(LedgerDevice device,
-      {required Uint8List message}) async {
+      {required Uint8List message, String? signDerivationPath}) async {
     final clientInterpreter = ClientCommandInterpreter(() => {});
 
     // prepare ClientCommandInterpreter
@@ -106,7 +112,7 @@ class BitcoinLedgerApp extends LedgerApp {
     return await ledger.runFlow(
       device,
       BitcoinSignMessageOperation(
-        derivationPath: derivationPath,
+        derivationPath: signDerivationPath ?? derivationPath,
         messageLength: message.length,
         messageMerkleRoot: chunksRoot,
       ),
